@@ -20,9 +20,10 @@ musica.loop = true;
 
 
 let tempoEmSegundos = 1500;
+
 let intervaloId = null;
 
-
+ 
 
 
 focobt.addEventListener('click', () => {
@@ -91,6 +92,13 @@ const Contador = () => {
         somFim.play();
         alert("Tempo Finalizado!");
         zerar();
+        const focoAtivo = html.getAttribute('data-contexto') == 'foco';
+        if (focoAtivo){
+           const evento = new CustomEvent('focoFinalizado');
+           document.dispatchEvent(evento); 
+        }
+
+        
         return;
     }
     tempoEmSegundos -= 1;
